@@ -16,10 +16,11 @@ class ProductSeeder extends Seeder
         Product :: factory() -> count(100) -> make() -> each(function($product) {
             // one to many -> typology
             $typology = Typology:: inRandomOrder() -> first();
-            $product -> typologies() -> associate($typology);
+            $product -> typology() -> associate($typology);
 
             $product -> save();
             
+            // many to many -> categories
             $categories = Category:: inRandomOrder() -> limit(rand(1, 5)) -> get();
             $product -> categories() -> attach($categories);
         });
