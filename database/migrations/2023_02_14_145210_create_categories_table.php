@@ -19,8 +19,6 @@ return new class extends Migration
             $table -> string('code', 5) -> unique();
             $table -> string('name', 64);
             $table -> text('description') -> nullable();
-            $table -> integer('price') -> unsigned();
-            $table -> integer('weight') -> unsigned() -> default(0);
 
             $table->timestamps();
         });

@@ -22,7 +22,7 @@ class Product extends Model
 
         return $this -> belongsToMany(Category :: class);
     }
-    public function typology() {
+    public function typologies() {
 
         return $this -> belongsTo(Typology :: class);
     }
