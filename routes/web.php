@@ -25,3 +25,5 @@ Route :: get('/product/create', [MainController :: class, 'productCreate'])
 Route :: post('/product/create', [MainController :: class, 'productStore'])
     -> name('product.store');
 
+Route :: get('/delete/{product}', [MainController::class, 'productDelete'])
+    -> name('product.delete');
