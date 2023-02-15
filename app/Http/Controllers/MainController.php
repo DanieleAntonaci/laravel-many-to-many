@@ -32,9 +32,6 @@ class MainController extends Controller
             );
     }
     public function productStore(Request $request) {
-
-        // dd($request -> all());
-
         $data = $request -> validate([
             'name' => 'required|string|max:64',
             'description' => 'nullable|string',
@@ -63,5 +60,34 @@ class MainController extends Controller
         $product -> categories() -> sync([]);
         $product ->delete();
         return redirect()-> route('home');
+    }
+
+    public function productEdit(Product $product){
+        $typologies= Typology ::all();
+        $categories =Category::all();
+        return view('pages.product.edit', compact('product','typologies','categories'));
+    }
+
+    public function productUpdate(Product $product, Request $request){
+        $data = $request -> validate([
+            'name' => 'required|string|max:64',
+            'description' => 'nullable|string',
+            'price' => 'required|integer',
+            'weight' => 'required|integer',
+            'typology_id' => 'required|integer',
+            'categories' => 'required|array'
+        ]);
+
+        $product -> update($data);
+
+        $typology = Typology :: find($data['typology_id']);
+
+        $product -> typology() -> associate($typology);
+        $product -> save();
+        
+        $categories = Category :: find($data['categories']);
+        $product -> categories() -> attach($categories);
+
+        return redirect() -> route('product.home');
     }
 }

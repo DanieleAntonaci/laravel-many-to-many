@@ -27,3 +27,7 @@ Route :: post('/product/create', [MainController :: class, 'productStore'])
 
 Route :: get('/delete/{product}', [MainController::class, 'productDelete'])
     -> name('product.delete');
+Route:: get('/edit/{product}', [ MainController::class, 'productEdit'])
+    -> name('product.edit');
+Route ::post('/product/update/{product}', [MainController::class, 'productUpdate'])
+    -> name('product.update');

@@ -16,6 +16,8 @@
                     {{ $product -> typology -> digital ? "YES" : "NO" }}
                     ----
                     <a href="{{route('product.delete', $product)}}">DELETE</a>
+                    ----
+                    <a href="{{route('product.edit', $product)}}">EDIT</a>
                 </li>
             @endforeach
         </ul>
